@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Добавление нового пользователя в систему{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Добавление нового пользователя в систему</h5>
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email, {label: "Email пользователя."}) }}
+                    {{ form_row(registrationForm.name, {label: "Имя пользователя."}) }}
+                    {{ form_row(registrationForm.surname, {label: "Фамилия пользователя."}) }}
+                    {{ form_row(registrationForm.phone, {label: "Мобильный телефон."}) }}
+                    {{ form_row(registrationForm.password, {label: "Пароль."}) }}
+                    {{ form_row(registrationForm.passwordRepeat, {label: "Пароль еще раз."}) }}
+                    <button class="btn btn-lg btn-primary btn-block" type = "submit">Создать</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Измение настроек поиска{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Измение настроек поиска</h5>
+
+                    {{ form_start(adviceSettingsForm) }}
+
+                    {{ form_row(adviceSettingsForm.searchUrl, {label: "Поисковый урл."}) }}
+                    {{ form_row(adviceSettingsForm.itemUrl, {label: "Общая часть отдельного тендера (например, http://www.icetrade.by/tenders/all/view/)."}) }}
+                    {{ form_row(adviceSettingsForm.pages, {label: "Количество страниц для поиска."}) }}
+                    {{ form_row(adviceSettingsForm.requestHeaders, {label: "Заголовки браузера (каждый с новой строки)."}) }}
+
+                    <button class="btn btn-lg btn-primary" type = "submit">Изменить</button>
+                    {{ form_end(adviceSettingsForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Все {% if contractorType == 'customer' %}клиенты{% else %} покупатели{% endif %} в системе{% endblock %}
+
+{% block body %}
+    <div class="row bg-white">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto margin-300">
+            <h5 class="article-title">Список {% if contractorType == 'customer' %}клиентов{% else %} поставщиков{% endif %} в системе.
+                <span class="a-light-gray">Всего: {{ pagination.getTotalItemCount }}</span>
+            </h5>
+            <form name="deleteChecked" action="{{ path ('delete_contractors') }}">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">{{ knp_pagination_sortable(pagination, 'Название', 'c.name') }}</th>
+                                <th scope="col">Страна</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Телефон</th>
+                                <th scope="col">{{ knp_pagination_sortable(pagination, 'id', 'c.id') }}</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for contractor in pagination %}
+                                <tr>
+                                    <td><input type="checkbox" name="contractor[]" value="{{ contractor.id }}"></td>
+                                    <td class="font-weight-bold company-name"><a href="{{ path ('show_contractor', {id: contractor.id}) }}">{{ contractor.name }}</a></td>
+                                    <td>{{ contractor.country.name }}</td>
+                                    <td>{{ contractor.emails|first }}</td>
+                                    <td>{{ contractor.phones|first }}</td>
+                                    <td><small class="a-light-gray">{{ contractor.id }}</small></td>
+                                    <td class="text-right"><a href="{{ path ('edit_contractor', {id: contractor.id}) }}"><i class="far fa-lg fa-edit"></i></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="mt-5 paginator-container">{{ knp_pagination_render(pagination) }}</div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Удалить выбранные</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

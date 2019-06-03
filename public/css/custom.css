@@ -1,0 +1,401 @@
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+
+body {
+    background: #9CECFB;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+    padding: 2rem;
+}
+
+.form-signin {
+    width: 100%;
+}
+
+.form-signin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    height: auto;
+    border-radius: 2rem;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+    color: transparent;
+}
+
+.form-label-group input::placeholder {
+    color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
+}
+
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+}
+
+.btn-facebook {
+    color: white;
+    background-color: #3b5998;
+}
+
+@font-face {
+    font-family: "BladeRunner";
+    src: url("http://crm.bel/css/fonts/BLADRMF.ttf")  format("truetype");
+}
+
+@font-face {
+    font-family: "BladeRunner_IE";
+    src: url("http://crm.bel/css/fonts/BLADRMF.eot")  format("truetype");
+}
+
+.title {
+    font-family: BladeRunner, BladeRunner_IE, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: yellow;
+    line-height: 20px;
+}
+
+.article-title {
+    text-align: center;
+    margin-top:30px;
+}
+
+.logo {
+    max-width: 160px;
+}
+
+.nav-item {
+    font-size: 15pt;
+}
+
+.navbar-ul {
+    margin-left: 50px;
+    margin-right:20px;
+}
+
+.navbar h2 {
+    color: burlywood;
+    font-style: italic;
+}
+
+.login-link li a {
+    color: #495057;
+}
+
+.user {
+    float: left;
+    margin-bottom: 0px;
+}
+
+.personal-cabinet {
+    border-left: 1px solid lightgray;
+}
+
+.margin-300 {
+    margin-bottom: 300px;
+}
+
+td a {
+    color: cadetblue;
+}
+
+td a:hover {
+    color: cadetblue;
+    font-weight: bold;
+}
+
+.algolia-autocomplete {
+    width: 100%;
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 100%;
+}
+
+.algolia-autocomplete .aa-hint {
+    color: #999;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #B2D7FF;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    color: green;
+    font-style: normal;
+}
+
+.suggestion {
+    color: burlywood;
+}
+
+.suggestion:hover {
+    color: #1b1e21;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+input#search-input {
+    background-image: url('/img/searchIcon2.png');
+    background-repeat: no-repeat;
+    text-indent: 20px;
+}
+
+h2 {
+    color:burlywood;
+}
+
+.a-gray {
+    color: gray;
+    text-decoration: none;
+}
+
+.a-gray:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.a-gray:visited{
+    color: black;
+    text-decoration: none;
+}
+
+.a-light-gray {
+    color: lightgray;
+    text-decoration: none;
+}
+.card {
+    border-bottom: solid gray 1px;
+}
+
+.accordion-single .card:last-of-type {
+    border-bottom: 1px solid lightgray;
+}
+
+.company-name {
+    color: burlywood;
+}
+
+.company-name a:hover {
+    color: burlywood;
+}
+
+.company-name a {
+    color: burlywood;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-outline-secondary > a {
+    color: #495057;
+}
+
+.btn-outline-secondary a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.collection-ul-email {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.collection-ul-phone {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.collection-li > input {
+     width:95%;
+     float:left;
+ }
+
+.collection-li > .form-group > input {
+    width:95%;
+    float:left;
+}
+.remove-tag {
+    height: 70px;
+    padding: 5px 0px 5px 15px;
+}
+
+.remove-tag i {
+    margin-top:10px;
+}
+
+.existed-field > i{
+    margin-top: 0px;
+}
+
+.remove-tag-phone {
+    height: 70px;
+    padding: 5px 0px 5px 15px;
+}
+
+.remove-tag-phone i {
+    margin-top:10px;
+}
+
+.separator {
+    height: 20px;
+}
+
+.a-red {
+    color: brown;
+}
+
+.a-yel-green {
+    color: yellowgreen;
+}
+
+.bg-alice {
+    background-color: aliceblue;
+}
+
+.wid-40 {
+    width: 40px;
+}
+
+.collection-ul-attach {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.tab-content {
+    margin-bottom: 200px;
+}
+
+.alert {
+    margin-bottom: 0px;
+}
+
+.contractor {
+    color: antiquewhite;
+}
+
+.contractor:hover {
+    color: burlywood;
+}
+
+.paginator-container {
+    display: flex;
+    justify-content: center;
+}
+
+.a-cadetblue {
+    color: cadetblue;
+}
+
+.a-brown {
+    color: brown;
+}
+
+.a-coral {
+    color: lightsalmon;
+}
+
+.a-beige {
+    color: beige;
+}
+
+.td-offer-type {
+    border-left: 1px solid #c9edc2;
+    border-right: 1px solid #c9edc2;
+    text-align: center;
+}
+
+.sortable {
+    color: cornflowerblue;
+}
+
+.warning {
+    color: #fce379;
+}

@@ -1,0 +1,13 @@
+<ul class="navbar-nav navbar-ul">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-lg fa-user-friends"></i></i> Пользователи
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ path ('list_users') }}"><i class="fas fa-users"></i> Все пользователи</a>
+            <a class="dropdown-item" href="{{ path ('add_user') }}"><i class="fas fa-user-plus"></i> Добавить пользователя</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,24 @@
+<ul class="navbar-nav mr-auto navbar-ul">
+    <li class="nav-item {% if customers  is defined %}active{% endif %}">
+        <a class="nav-link" href="{{ path ('index_customers') }}">Клиенты <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item {% if suppliers  is defined %}active{% endif %}">
+        <a class="nav-link" href="{{ path ('index_suppliers') }}">Поставщики</a>
+    </li>
+    <li class="nav-item {% if tenders  is defined %}active{% endif %}">
+        <a class="nav-link" href="{{ path ('index_tenders') }}">Тендеры</a>
+    </li>
+    <li class="nav-item {% if search  is defined %}active{% endif %}">
+        <ul class="navbar-nav ml-auto navbar-ul">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Поиск
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path ('search_advices') }}"><i class="far fa-lg fa-play-circle"></i> Начать поиск</a>
+                    <a class="dropdown-item" href="{{ path ('list_advices') }}"><i class="fas fa-poll-h"></i> Просмотреть результат</a>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>

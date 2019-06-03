@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ offer.title }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <p>&nbsp;</p>
+            <h5 class="text-center">Предложение для "{{ offer.contractor.name }}".</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <div class="text-right">
+                        <div class="text-right mb-3 d-inline-block">
+                            <a class="btn btn-outline-secondary" href="{{ path ('edit_offer', {id: offer.id}) }}">
+                                <i class="far fa-edit"></i>  Редактировать
+                            </a>
+                        </div>
+                        <div class="text-right mb-3 d-inline-block">
+                            <form name="deleteChecked" action="{{ path ('delete_offers') }}">
+                                <input type="hidden" name="offer[]" value="{{ offer.id }}">
+                                <input type="hidden" name="contractorId" value="{{ offer.contractor.id }}">
+                                <button type="submit" class="btn btn-outline-secondary delete"><i class="fas fa-trash-alt"></i>  Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead class="">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Тип</th>
+                            <th scope="col">Создано</th>
+                            <th scope="col">№</th>
+                            <th scope="col">id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="font-weight-bold">
+                                <h4>"{{ offer.title }}"</h4>
+                            </td>
+                            <td class="a-red"><span class="{% if offer.offerType.description == 'Исходящее' %}a-yel-green{% endif %}">
+                                                    {% if offer.offerType.description == 'Входящее' %}
+                                                        Входящее
+                                                    {% else %}
+                                                        Исходящее
+                                                    {% endif %}</span>
+                            </td>
+                            <td><small class="a-gray">{{ offer.createdAt|ago }}</small></td>
+                            <td><small class="a-gray">{{ offer.number }}</small></td>
+                            <td><small class="a-light-gray">{{ offer.id }}</small></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <p>&nbsp;</p>
+                    <h5><i class="fas fa-paperclip"></i> Прикрепленные файлы</h5>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Файл</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for file in offer.attach %}
+                        <tr>
+                            <td><a href="{{ path ('return_file', {fileName: file, offerOrTender: 'offer'}) }}">{{ file|pretty_name }}</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+
+    <script src="{{ asset ('/js/prevent-deletion.js') }}"></script>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+<ul class="navbar-nav ml-auto navbar-ul">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cogs"></i> Настройки
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ path ('add_country') }}"><i class="fas fa-plus"></i> <i class="fas fa-flag"></i> Добавить страну</a>
+            <a class="dropdown-item" href="{{ path ('list_countries') }}"><i class="fas fa-flag"></i> Просмотреть страны</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ path ('edit_advice_settings') }}"><i class="fas fa-search"></i> Настройки поиска</a>
+            <a class="dropdown-item" href="{{ path ('add_tag') }}"><i class="fas fa-plus"></i> <i class="fas fa-ad"></i> Добавить ключевое слово</a>
+            <a class="dropdown-item" href="{{ path ('list_tags') }}"><i class="fas fa-ad"></i> Просмотреть ключевые слова</a>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Измение данных пользователя!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Изменение данных пользователя.</h1>
+                    {{ form_start(editUserForm) }}
+                    {{ form_row(editUserForm.email, {label: "Email пользователя."}) }}
+                    {{ form_row(editUserForm.name, {label: "Имя пользователя."}) }}
+                    {{ form_row(editUserForm.surname, {label: "Фамилия пользователя."}) }}
+                    {{ form_row(editUserForm.phone, {label: "Мобильный телефон."}) }}
+
+                    <div class="form-group">
+                        <label for="type">Тип</label>
+                        <select class="form-control" id="type" name="edit_user_form[role]" required="required">
+                            {% for type in roleTypes %}
+                                <option value="{{ type.name }}"
+                                {% if type.name == userRoles.0 %}
+                                    selected = "selected"
+                                {% endif %}>
+                                    {{ type.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <small id="currentRoleHelpBlock" class="form-text text-muted">
+                            Текущий тип пользователя "{{ userRoles.0 }}".
+                        </small>
+                    </div>
+
+                    {{ form_row(editUserForm.plainPassword, {label: "Пароль.", is_selected: "hh"}) }}
+                    <button class="btn btn-lg btn-primary btn-block" type = "submit">Изменить</button>
+                    {{ form_end(editUserForm) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+
+###> symfony/framework-bundle ###
+desktop.ini
+/.idea/
+/.env.local
+/.env.local.php
+/.env.*.local
+/apacheLogs/
+/public/AttachOffer/
+/public/AttachTender/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

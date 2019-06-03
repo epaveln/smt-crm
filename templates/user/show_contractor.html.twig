@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Клиенты{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-6 mt-3">
+            <a data-toggle="collapse" data-target="#demo" class="a-gray" href="#">
+                <i class="fas fa-eye"></i> Контактные данные
+            </a>
+
+            <div id="demo" class="collapse">
+                <address class="a-gray">
+                    <small>
+                        {% if contractor.emails|length > 0 %}
+                            <i class="fas fa-at"></i> email:
+                            {% for email in contractor.emails %}
+                                <a href="mailto:{{ email }}">{{ email }}</a>.
+                            {% endfor %}<br>
+                        {% endif %}
+                        <i class="fas fa-phone-square"></i> Телефоны:
+                        {% for phone in contractor.phones %}
+                            {{ phone }}
+                        {% endfor %}<br>
+                        <i class="fas fa-city"></i> Адрес: {{ contractor.address }}
+                    </small>
+                </address>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3 text-right">
+            <a class="btn btn-outline-secondary" href="{{ path ('edit_contractor', {id: contractor.id}) }}">
+                <i class="far fa-edit"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto">
+            <h2 class="article-title">{{ contractor.contractorType|trim('ы', 'right') }} <strong>"{{ contractor.name }}"</strong></h2>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active contractor" data-toggle="tab" href="#offers"><i class="fas fa-list-ul"></i> Предложения</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link contractor" data-toggle="tab" href="#persons"><i class="fas fa-user-tie"></i> Сотрудники компании</a>
+                </li>
+            </ul>
+
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="offers">
+                    <form name="deleteChecked" action="{{ path ('delete_offers') }}">
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+                                <div class="text-right">
+                                    <div class="text-right mb-3 d-inline-block">
+                                        <a class="btn btn-outline-secondary" href="{{ path ('create_offer', {id: contractor.id}) }}">
+                                            <i class="fas fa-plus-circle"></i>  Добавить предложение
+                                        </a>
+                                    </div>
+                                    {% if contractor.offers|length > 0 %}
+                                        <div class="text-right d-inline-block">
+                                            <input type="hidden" name="contractorId" value="{{ contractor.id }}">
+                                            <button type="submit" class="btn btn-outline-secondary delete" formnovalidate><i class="fas fa-trash-alt"></i>  Удалить выбранные</button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <table class="table table-striped table-hover">
+                                    {% if contractor.offers|length > 0 %}
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">{{ knp_pagination_sortable(pagination, 'Заголовок', 'o.title') }}</th>
+                                            <th scope="col" class="td-offer-type">Тип</th>
+                                            <th scope="col">{{ knp_pagination_sortable(pagination, 'Создано', 'o.createdAt') }}</th>
+                                            <th scope="col">{{ knp_pagination_sortable(pagination, '№', 'o.number') }}</th>
+                                            <th scope="col">{{ knp_pagination_sortable(pagination, 'id', 'o.id') }}</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        </thead>
+                                    {% endif %}
+                                    <tbody>
+                                    {% for offer in pagination %}
+                                        <tr>
+                                            <td class="wid-40"><input type="checkbox" name="offer[]" value="{{ offer.id }}"></td>
+                                            <td class="font-weight-bold">
+                                                <a href="{{ path ('show_offer', {id: offer.id}) }}">
+                                                    <h5><strong>{{ offer.title }}</strong></h5>
+                                                </a>
+                                            </td>
+                                            <td class="a-red td-offer-type"><span class="{% if offer.offerType.description == 'Исходящее' %}a-yel-green{% endif %}">
+                                                    {% if offer.offerType.description == 'Входящее' %}
+                                                        <i class="fas fa-arrow-left"></i>
+                                                    {% else %}
+                                                        <i class="fas fa-arrow-right"></i>
+                                                    {% endif %}</span>
+                                            </td>
+                                            <td><small class="a-gray">{{ offer.createdAt|ago }}</small></td>
+                                            <td><small class="a-gray">{{ offer.number }}</small></td>
+                                            <td><small class="a-light-gray">{{ offer.id }}</small></td>
+                                            <td class="text-right"><a href="{{ path ('edit_offer', {id: offer.id}) }}"><i class="far fa-lg fa-edit"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="mt-5 paginator-container">{{ knp_pagination_render(pagination) }}</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+                <div class="tab-pane container fade" id="persons">
+                    <form name="deleteChecked" action="{{ path ('delete_offers') }}">
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+                                <div class="text-right mb-3">
+                                    <a class="btn btn-primary" href="{{ path ('create_person', {id: contractor.id}) }}">
+                                        <i class="fas fa-plus-circle"></i>  Добавить сотрудника
+                                    </a>
+                                </div>
+                                {% for person in contractor.persons %}
+                                    <div class="card">
+                                        <div class="card-header company-name">
+                                            <h5><strong>{{ person.name }}</strong></h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{ person.position }}</h6>
+                                            <p class="card-text">
+                                                {% if person.email|length > 0 %}
+                                                    <i class="fas fa-at"></i> Email:
+                                                    {% for email in person.email %}
+                                                        <a href="mailto:{{ email }}">{{ email }}</a>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </p>
+                                            <p class="card-text">
+                                                {% if person.phone|length > 0 %}
+                                                    <i class="fas fa-phone-square"></i> Телефоны:
+                                                    {% for phone in person.phone %}
+                                                       {{ phone }}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </p>
+                                            <p class="card-text">
+                                                {% if person.skypeId|length > 0 %}
+                                                    <i class="fab fa-skype"></i> Skype:
+                                                    {{ person.skypeId }}
+                                                {% endif %}
+                                                {% if person.telegram|length > 0 %}
+                                                    &nbsp;
+                                                    <i class="fab fa-telegram-plane"></i> Telegram:
+                                                    {{ person.telegram }}
+                                                {% endif %}
+                                            </p>
+                                            <div class="d-inline-block">
+                                                <a href="{{ path('edit_person', {id: person.id}) }}" class="btn btn-outline-secondary"><i class="far fa-edit"></i> Изменить данные</a>
+                                            </div>
+                                            <div class="text-right d-inline-block">
+                                                <a href="{{ path('delete_person', {id: person.id}) }}" class="btn btn-outline-secondary delete"><i class="fas fa-trash-alt"></i>  Удалить</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">&nbsp;</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+
+    <script src="{{ asset ('/js/prevent-deletion.js') }}"></script>
+{% endblock %}

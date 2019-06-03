@@ -1,0 +1,17 @@
+{% if is_granted('ROLE_ADMIN') %}
+    {{ include ('authorization/_main_menu.html.twig') }}
+    {{ include ('authorization/_settings_menu.html.twig') }}
+    {{ include ('authorization/_admin_menu.html.twig') }}
+    {{ include ('authorization/_personal_cabinet.html.twig') }}
+{% elseif is_granted('ROLE_USER') %}
+    {{ include ('authorization/_main_menu.html.twig') }}
+    {{ include ('authorization/_settings_menu.html.twig') }}
+    {{ include ('authorization/_personal_cabinet.html.twig') }}
+{% else %}
+    <ul class="navbar-nav ml-auto navbar-ul login-link">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ asset('/login') }}">Войти <i class="fas fa-lg fa-sign-in-alt"></i></a>
+        </li>
+    </ul>
+{% endif %}
+

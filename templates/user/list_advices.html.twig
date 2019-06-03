@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Тендеры с ключевыми словами{% endblock %}
+
+{% block body %}
+    <div class="row bg-white">
+        <div class="col-sm-9 col-md-7 col-lg-12 mx-auto margin-300">
+            <h5 class="article-title">Рекомендуемые тендеры с ключевыми словами</h5>
+            <form name="checked" action="{{ path ('process_advices') }}">
+                <fieldset id="group_1">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <a rel="group_1" href="#select_all"><i class="fas fa-check-double btn btn-light mb-2"> </i> Отметить все</a>
+                        <a rel="group_1" href="#select_none"><i class="fas fa-list-ul btn btn-light mb-2"></i> Снять выделение</a>
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Название</th>
+                                <th scope="col">iD</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for advice in advices %}
+                                <tr>
+                                    <td><input type="checkbox" name="advice[]" value="{{ advice.id }}"></td>
+                                    <td class="font-weight-bold">
+                                        <a target="_blank" href="{{ itemUrl }}{{ advice.id }}">{{ advice.title }}</a>
+                                    </td>
+                                    <td><small class="a-light-gray">{{ advice.id }}</small></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a rel="group_1" href="#select_all"><i class="fas fa-check-double btn btn-light mt-2"> </i> Отметить все</a>
+                        <a rel="group_1" href="#select_none"><i class="fas fa-list-ul btn btn-light mt-2"></i> Снять выделение</a>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Пометить как не актуальные</button>
+                </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent () }}
+
+    <script src="{{ asset ('/js/item-multi-check.js') }}"></script>
+{% endblock %}
